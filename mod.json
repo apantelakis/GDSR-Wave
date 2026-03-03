@@ -1,0 +1,26 @@
+{
+	"geode": "5.0.0",
+	"gd": {
+		"win": "2.2081"
+	},
+	"id": "thanasis.gdsr-wave",
+	"name": "GDSR Wave",
+	"version": "v1.0.0",
+	"developer": "Thanasis",
+	"description": "GDSR Wave Doc Implementation",
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.0"
+	},
+	"resources": {
+        "sprites": [
+            "resources/*.png"
+        ]
+  },
+	"tags": [
+		"utility",
+		"online"
+	],
+	"links": {
+		"source": "https://github.com/apantelakis/GDSR-Wave"
+	}
+}
