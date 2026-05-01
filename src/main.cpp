@@ -198,6 +198,9 @@ public:
 
 	void loadPage(int page)
 	{
+		auto glm = GameLevelManager::get();
+		glm->m_levelManagerDelegate = this;
+
 		if (!m_loadingCircle)
 		{
 			m_loadingCircle = LoadingCircle::create();
@@ -218,8 +221,7 @@ public:
 			idsToFetch += m_allLevelIds[i];
 		}
 
-		auto glm = GameLevelManager::get();
-		glm->m_levelManagerDelegate = this;
+		
 
 		auto searchObj = GJSearchObject::create(SearchType::Type19);
 		searchObj->m_searchQuery = idsToFetch;
@@ -234,13 +236,15 @@ public:
 			m_loadingCircle = nullptr;
 		}
 
+
 		if (m_listLayer)
+		{
 			m_listLayer->removeFromParent();
+		}
 
 		auto winSize = CCDirector::get()->getWinSize();
-
 		auto listView = CustomListView::create(levels, BoomListType::Level, 190.0f, 356.0f);
-
+		
 		m_listLayer = GJListLayer::create(listView, m_tierName.c_str(), {0, 0, 0, 180}, 356.f, 220.f, 0);
 		m_listLayer->setPosition(winSize / 2 - m_listLayer->getContentSize() / 2);
 
@@ -275,7 +279,8 @@ public:
 		infoText->setScale(0.4f);
 		m_listLayer->addChild(infoText);
 
-		addChild(m_listLayer);
+		addChild(m_listLayer, 99);
+		//log::info("loadLevelsFinished complete");
 	}
 
 	void loadLevelsFailed(const char *, int) override
